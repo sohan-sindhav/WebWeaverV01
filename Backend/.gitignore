@@ -13,7 +13,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-
 # Temporary files
 *.swp
 *.swo
@@ -43,3 +42,6 @@ debug/
 # Other files that are not needed
 *.env.test
 *.env.production
+
+# Ensure dist directory is not ignored
+!dist/
