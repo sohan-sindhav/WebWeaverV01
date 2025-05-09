@@ -1,9 +1,9 @@
 const express = require("express");
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
-// const templateRoutes = require("./routes/templateRoutes");
 const path = require("path");
 
 dotenv.config();
@@ -13,11 +13,18 @@ const app = express();
 
 app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 app.use(express.json());
+
+// Use MongoDB for session storage
 app.use(
   session({
     secret: "authSecret",
     resave: false,
     saveUninitialized: false,
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGO_URI, // MongoDB URI
+      collectionName: "sessions", // Optional: the name of the sessions collection
+      ttl: 14 * 24 * 60 * 60, // Session expiry in seconds (14 days here)
+    }),
   })
 );
 
