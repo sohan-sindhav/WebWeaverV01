@@ -36,7 +36,7 @@ app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/dev", devRoutes);
 app.use("/api/v1/templates", templateRoutes);
 
-const frontendPath = path.join(__dirname, "../frontend/dist");
+const frontendPath = path.join(__dirname, "../Frontend/dist");
 console.log("Frontend path:", frontendPath);
 
 const fs = require("fs");
